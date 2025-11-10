@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terapia de Recuerdos - Inicio</title>
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+    <!-- Animación de fondo -->
+    <div class="background-animation">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-brain"></i>
+                <span>MemoryTherapy</span>
+            </div>
+            <div class="nav-actions">
+                <button onclick="navigateTo('login')" class="btn btn-outline">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Iniciar Sesión
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="hero-section">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Revive tus Recuerdos</span>
+                    <br>con Inteligencia Artificial
+                </h1>
+                <p class="hero-subtitle">
+                    Transforma tus memorias más preciadas en imágenes terapéuticas 
+                    que te ayuden a reconectar con momentos especiales.
+                </p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-palette"></i>
+                        <h3>Generación de Imágenes</h3>
+                        <p>Múltiples APIs de IA para crear imágenes únicas</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-heart"></i>
+                        <h3>Terapia Visual</h3>
+                        <p>Enfoque terapéutico para la recuperación emocional</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Privacidad Total</h3>
+                        <p>Tus recuerdos están seguros y protegidos</p>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <button onclick="navigateTo('login')" class="btn btn-primary btn-large">
+                        <i class="fas fa-magic"></i>
+                        Comenzar Ahora
+                    </button>
+                    <button onclick="scrollToDemo()" class="btn btn-secondary btn-large">
+                        <i class="fas fa-play"></i>
+                        Ver Demo
+                    </button>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="visual-container">
+                    <div class="memory-card floating">
+                        <i class="fas fa-image"></i>
+                        <span>Recuerdo Visual</span>
+                    </div>
+                    <div class="memory-card floating delay-1">
+                        <i class="fas fa-brain"></i>
+                        <span>IA Terapéutica</span>
+                    </div>
+                    <div class="memory-card floating delay-2">
+                        <i class="fas fa-heart"></i>
+                        <span>Sanación Emocional</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo-section">
+        <div class="container">
+            <h2>¿Cómo funciona?</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Describe tu recuerdo</h3>
+                        <p>Cuéntanos sobre las personas, lugares y emociones de tu memoria especial</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>IA genera el prompt</h3>
+                        <p>Nuestra IA procesa tu historia y crea una descripción terapéutica optimizada</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Imagen terapéutica</h3>
+                        <p>Recibe una imagen única que te ayuda a reconectar con ese momento especial</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-circle"></i> Acceso a la Plataforma</h2>
+                <button onclick="closeModal()" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <button class="tab-btn active" onclick="switchTab('login')">Iniciar Sesión</button>
+                    <button class="tab-btn" onclick="switchTab('register')">Registrarse</button>
+                </div>
+
+                <form id="authForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fas fa-envelope"></i>
+                            Correo electrónico
+                        </label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">
+                            <i class="fas fa-lock"></i>
+                            Contraseña
+                        </label>
+                        <input type="password" id="password" required>
+                    </div>
+
+                    <div id="registerFields" class="register-only hidden">
+                        <div class="form-group">
+                            <label for="confirmPassword">
+                                <i class="fas fa-lock"></i>
+                                Confirmar contraseña
+                            </label>
+                            <input type="password" id="confirmPassword">
+                        </div>
+                    </div>
+
+                    <div class="auth-actions">
+                        <button type="button" id="submitBtn" class="btn btn-primary full-width">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span id="submitText">Iniciar Sesión</span>
+                        </button>
+                    </div>
+                </form>
+
+                <div id="authError" class="error-message hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App (Hidden initially) -->
+    <div id="mainApp" class="main-app hidden">
+        <nav class="app-navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <i class="fas fa-brain"></i>
+                    <span>MemoryTherapy</span>
+                </div>
+                <div class="user-menu">
+                    <span id="userEmail" class="user-email"></span>
+                    <button onclick="logout()" class="btn btn-outline">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="app-main">
+            <div class="container">
+                <div class="app-header">
+                    <h1>
+                        <i class="fas fa-magic"></i>
+                        Generador de Recuerdos Terapéuticos
+                    </h1>
+                    <p>Transforma tus memorias en imágenes sanadoras</p>
+                    <div id="usageCounter" class="usage-counter"></div>
+                </div>
+
+                <div class="form-container">
+                    <div class="api-selector-card">
+                        <h3>
+                            <i class="fas fa-cogs"></i>
+                            Selecciona tu servicio de IA
+                        </h3>
+                        
+                        <div class="api-options">
+                            <div class="api-option" data-api="huggingface">
+                                <input type="radio" id="huggingface" name="apiChoice" value="huggingface" checked>
+                                <label for="huggingface">
+                                    <div class="api-info">
+                                        <span class="api-name">🤗 Hugging Face</span>
+                                        <span class="api-badge free">GRATIS</span>
+                                    </div>
+                                    <span class="api-desc">Recomendado - Modelos open source</span>
+                                </label>
+                            </div>
+
+                            <div class="api-option" data-api="deepai">
+                                <input type="radio" id="deepai" name="apiChoice" value="deepai">
+                                <label for="deepai">
+                                    <div class="api-info">
+                                        <span class="api-name">🤖 DeepAI</span>
+                                        <span class="api-badge free">GRATIS</span>
+                                    </div>
+                                    <span class="api-desc">Alternativa rápida y confiable</span>
+                                </label>
+                            </div>
+
+                            <div class="api-option" data-api="openai">
+                                <input type="radio" id="openai" name="apiChoice" value="openai">
+                                <label for="openai">
+                                    <div class="api-info">
+                                        <span class="api-name">🎨 OpenAI DALL-E</span>
+                                        <span class="api-badge premium">PREMIUM</span>
+                                    </div>
+                                    <span class="api-desc">Máxima calidad - Requiere API Key</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="apiConfig" class="api-config hidden">
+                            <div class="form-group">
+                                <label for="apiKey">
+                                    <i class="fas fa-key"></i>
+                                    API Key de OpenAI
+                                </label>
+                                <input type="password" id="apiKey" placeholder="sk-...">
+                                <small>Obtén tu API key en <a href="https://platform.openai.com" target="_blank">platform.openai.com</a></small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="memoryForm" class="memory-form">
+                        <div class="form-sections">
+                            <div class="form-section">
+                                <h3>
+                                    <i class="fas fa-users"></i>
+                                    Personas involucradas
+                                </h3>
+                                <div class="form-group">
+                                    <input type="text" id="personas" placeholder="Mi familia, mejores amigos, pareja..." required>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    Lugar del recuerdo
+                                </h3>
+                                <div class="form-group">
+                                    <input type="text" id="lugar" placeholder="En la playa, casa de la abuela, parque favorito..." required>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3>
+                                    <i class="fas fa-heart"></i>
+                                    Emociones experimentadas
+                                </h3>
+                                <div class="form-group">
+                                    <input type="text" id="emociones" placeholder="Alegría, paz, amor, nostalgia, gratitud..." required>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3>
+                                    <i class="fas fa-eye"></i>
+                                    Detalles sensoriales
+                                </h3>
+                                <div class="form-group">
+                                    <textarea id="detalles" rows="4" placeholder="El sol dorado del atardecer, olor a flores, sonido de risas, textura de la arena..." required></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="generateBtn" class="btn btn-primary btn-large full-width">
+                            <i class="fas fa-magic"></i>
+                            <span>Generar Recuerdo Terapéutico</span>
+                        </button>
+                    </form>
+                </div>
+
+                <div id="resultsContainer" class="results-container hidden">
+                    <div id="loadingState" class="loading-state">
+                        <div class="loading-animation">
+                            <div class="brain-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="loading-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                        <h3>Procesando tu recuerdo...</h3>
+                        <p id="loadingMessage">Analizando tus emociones y memorias</p>
+                    </div>
+
+                    <div id="resultsContent" class="results-content hidden">
+                        <div class="result-section">
+                            <h3>
+                                <i class="fas fa-quote-left"></i>
+                                Descripción Terapéutica Generada
+                            </h3>
+                            <div id="generatedPrompt" class="prompt-display"></div>
+                        </div>
+
+                        <div class="result-section">
+                            <h3>
+                                <i class="fas fa-image"></i>
+                                Tu Imagen Terapéutica
+                            </h3>
+                            <div class="image-container">
+                                <img id="generatedImage" alt="Tu recuerdo terapéutico" class="generated-image">
+                                <div class="image-actions">
+                                    <button onclick="downloadImage()" class="btn btn-outline">
+                                        <i class="fas fa-download"></i>
+                                        Descargar
+                                    </button>
+                                    <button onclick="shareImage()" class="btn btn-outline">
+                                        <i class="fas fa-share"></i>
+                                        Compartir
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="resetForm()" class="btn btn-secondary">
+                            <i class="fas fa-plus"></i>
+                            Crear Nuevo Recuerdo
+                        </button>
+                    </div>
+                </div>
+
+                <div id="errorContainer" class="error-container hidden">
+                    <div class="error-content">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>¡Oops! Algo salió mal</h3>
+                        <p id="errorMessage"></p>
+                        <button onclick="hideError()" class="btn btn-outline">
+                            <i class="fas fa-times"></i>
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Pricing Modal (Simplificado) -->
+    <div id="pricingModal" class="modal">
+        <div class="modal-content pricing-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-info-circle"></i> Plan Gratuito</h2>
+                <button onclick="closePricingModal()" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="pricingPlans" class="pricing-plans"></div>
+        </div>
+    </div>
+
+    <!-- Firebase (Versión Compat - Compatible con el código) -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+
+    <!-- Application Scripts (orden importante) -->
+    <script src="js/config.js"></script>
+    <script src="js/utils/DOMUtils.js"></script>
+    <script src="js/utils/ValidationUtils.js"></script>
+    <script src="js/services/AuthService.js"></script>
+    <script src="js/services/AIService.js"></script>
+    <script src="js/services/ImageGenerationService.js"></script>
+    <script src="js/services/StripeService.js"></script>
+    <script src="js/controllers/AuthController.js"></script>
+    <script src="js/controllers/MemoryController.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
