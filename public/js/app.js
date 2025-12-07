@@ -135,11 +135,11 @@ class App {
 
         // Test Stripe
         try {
-            if (this.stripeService && this.stripeService.stripe) {
+            if (this.stripeService) {
                 diagnostics.stripe = true;
-                console.log('✅ Stripe: Conectado');
+                console.log('✅ Stripe: Conectado (Payment Links)');
             } else {
-                console.log('ℹ️ Stripe: No configurado (modo sin pagos)');
+                console.log('ℹ️ Stripe: No configurado');
             }
         } catch (error) {
             console.warn('⚠️ Stripe: No disponible');
@@ -346,6 +346,17 @@ if (document.readyState === 'loading') {
 } else {
     window.app = new App();
 }
-
 // Exportar para uso en consola (debugging)
 window.App = App;
+
+// ==================== Manejar retorno de Stripe ====================
+window.addEventListener('DOMContentLoaded', () => {
+    const checkStripeService = setInterval(() => {
+        if (window.stripeService) {
+            clearInterval(checkStripeService);
+            window.stripeService.checkPendingPayment();
+        }
+    }, 100);
+    
+    setTimeout(() => clearInterval(checkStripeService), 5000);
+});

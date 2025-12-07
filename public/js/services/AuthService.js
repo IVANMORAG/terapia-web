@@ -70,7 +70,11 @@ class AuthService {
                 const userData = userDoc.data();
                 this.userPlan = userData.plan || 'free';
                 this.imagesUsed = userData.imagesUsed || 0;
-                console.log('✅ Datos cargados:', { plan: this.userPlan, imagesUsed: this.imagesUsed });
+                console.log('✅ Datos cargados:', { 
+                    plan: this.userPlan, 
+                    imagesUsed: this.imagesUsed,
+                    uid: user.uid 
+                });
             } else {
                 console.log('📝 Usuario nuevo, creando documento...');
                 await this.createUserDocument(user);
@@ -296,27 +300,44 @@ class AuthService {
         console.log('📊 Display de uso actualizado');
     }
 
+    // ✅ MEJORADO: Mejor logging y manejo de errores
     async updateUserPlan(plan) {
         if (!this.currentUser) {
-            console.warn('⚠️ No se puede actualizar plan sin usuario');
-            return;
+            const error = 'No se puede actualizar plan sin usuario autenticado';
+            console.error('❌', error);
+            throw new Error(error);
         }
         
         try {
+            console.log(`🔄 Actualizando plan de "${this.userPlan}" a "${plan}"...`);
+            console.log(`  - UID: ${this.currentUser.uid}`);
+            console.log(`  - Email: ${this.currentUser.email}`);
+            
+            // Actualizar en Firestore
             await this.db.collection('users').doc(this.currentUser.uid).update({
                 plan: plan,
                 imagesUsed: 0,
                 planUpdatedAt: firebase.firestore.FieldValue.serverTimestamp()
             });
             
+            // Actualizar variables locales
             this.userPlan = plan;
             this.imagesUsed = 0;
             
+            // Actualizar UI
             this.updateUsageDisplay();
             
-            console.log(`✅ Plan actualizado a: ${plan}`);
+            console.log(`✅ Plan actualizado exitosamente a: ${plan}`);
+            console.log(`📊 Nuevo estado: plan="${this.userPlan}", imagesUsed=${this.imagesUsed}`);
+            
+            return true;
+            
         } catch (error) {
-            console.error('❌ Error al actualizar plan:', error);
+            console.error('❌ Error al actualizar plan en Firestore:', error);
+            console.error('  - UID intentado:', this.currentUser?.uid);
+            console.error('  - Plan destino:', plan);
+            console.error('  - Código de error:', error.code);
+            console.error('  - Mensaje:', error.message);
             throw error;
         }
     }

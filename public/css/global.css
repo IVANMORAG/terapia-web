@@ -1,4 +1,3 @@
-
 :root {
     --primary-color: #6366f1;
     --primary-dark: #4f46e5;
@@ -77,4 +76,237 @@ body {
 
 .full-width {
     width: 100%;
+}
+
+/* ==================== PRICING MODAL STYLES ==================== */
+.pricing-modal {
+    max-width: 1200px !important;
+    width: 95% !important;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.pricing-plans {
+    padding: 2rem;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.pricing-plan {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 2px solid #e5e7eb;
+    position: relative;
+}
+
+.pricing-plan:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.pricing-plan.featured {
+    border-color: #6366f1;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+}
+
+.pricing-plan.current-plan {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+    border-color: #6366f1;
+}
+
+.plan-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: linear-gradient(135deg, #6366f1, #ec4899);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.plan-header {
+    text-align: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.plan-header h3 {
+    font-size: 1.5rem;
+    color: #1f2937;
+    margin-bottom: 1rem;
+}
+
+.plan-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.plan-price .currency {
+    font-size: 1.2rem;
+    color: #6b7280;
+}
+
+.plan-price .amount {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #6366f1;
+}
+
+.plan-price .period {
+    font-size: 1rem;
+    color: #6b7280;
+    margin-left: 0.5rem;
+}
+
+.plan-images {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.plan-features {
+    list-style: none;
+    padding: 1.5rem 0;
+    margin: 0;
+}
+
+.plan-features li {
+    padding: 0.75rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #4b5563;
+}
+
+.plan-features li i {
+    color: #10b981;
+    font-size: 1.1rem;
+}
+
+.plan-action {
+    margin-top: 1.5rem;
+}
+
+/* ==================== USER MENU STYLES ==================== */
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-email {
+    color: #4b5563;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border-radius: 8px;
+    font-weight: 500;
+    border: 1px solid #d1d5db;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.user-email::before {
+    content: "👤";
+    font-size: 1.1rem;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    color: #78350f;
+    border: none;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.btn-secondary:hover::before {
+    left: 100%;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(251, 191, 36, 0.5);
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.btn-secondary i {
+    animation: crown-pulse 2s ease-in-out infinite;
+}
+
+@keyframes crown-pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Responsive para pricing y user menu */
+@media (max-width: 768px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .pricing-modal {
+        width: 100% !important;
+        max-height: 100vh;
+        border-radius: 0;
+    }
+    
+    .user-menu {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .user-email {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .btn-secondary {
+        font-size: 0.85rem;
+        padding: 0.6rem 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-email::before {
+        display: none;
+    }
+    
+    .btn-secondary span {
+        display: none;
+    }
+    
+    .btn-secondary i {
+        margin: 0;
+    }
 }
